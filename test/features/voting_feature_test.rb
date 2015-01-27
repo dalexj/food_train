@@ -46,4 +46,12 @@ class VotingFeatureTest < Capybara::Rails::TestCase
 
     assert_content page, "option does not exist"
   end
+
+  def test_cannot_vote_unless_in_group
+    # konr
+  end
+
+  def test_cannot_vote_for_same_option_twice
+    # konr
+  end
 end
