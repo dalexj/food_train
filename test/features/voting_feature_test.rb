@@ -5,6 +5,7 @@ class VotingFeatureTest < Capybara::Rails::TestCase
     group = create_group
     train = create_train group: group
     pizza_option = create_train_option train: train, place: "Pizza"
+    pizza_option2 = create_train_option train: train, place: "Pizza2"
 
     visit group_path(group)
     click_link_or_button "Vote for the Pizza Train"
@@ -17,6 +18,7 @@ class VotingFeatureTest < Capybara::Rails::TestCase
     group = create_group
     train = create_train group: group
     pizza_option = create_train_option train: train, place: "Pizza"
+    pizza_option2 = create_train_option train: train, place: "Pizza2"
 
     log_in
     user = User.find_or_create_from_auth_hash(auth_hash)
