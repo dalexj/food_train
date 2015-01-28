@@ -54,7 +54,7 @@
   </div>
 <% end %>
 
-<% if @group.trains.none? %>
+<% if current_user && @group.trains.none? && @group.has_user?(current_user) %>
   <center><%= link_to "Start a train", new_group_train_path(@group), class: "btn btn-info" %></center>
 <% end %>
 </div>

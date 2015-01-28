@@ -1,4 +1,5 @@
 class TrainsController < ApplicationController
+  before_action :require_in_group, only: [:create]
   def create
     @train = Train.new train_params.merge(group_id: params[:group_id])
     if options_count >= 2 && @train.save
@@ -22,5 +23,13 @@ class TrainsController < ApplicationController
 
   def options_count
     params["train"]["train_options_attributes"].reject{ |k,v| v["place"].empty? }.count
+  end
+
+  def require_in_group
+    group = Group.find_by(id: params[:group_id])
+    return unless group
+    unless group.has_user? current_user
+      redirect_to group_path(group), notice: "you're not in this group"
+    end
   end
 end
