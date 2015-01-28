@@ -51,6 +51,11 @@
         <% end %>
       </ul>
     </div>
+    <center>
+      <% if train.train_options.count < 4 %>
+        <%= link_to "Add an Option", new_train_train_option_path(train), class: "btn btn-success" %>
+      <% end %>
+    </center>
   </div>
 <% end %>
 

@@ -33,4 +33,13 @@ class TrainOptionTest < ActiveSupport::TestCase
     assert train_option.yelp_business
   end
 
+  def test_train_option_validates_place_presence
+    train_option = create_train_option
+    assert train_option.valid?
+    train_option.place = nil
+    refute train_option.valid?
+    train_option.place = ""
+    refute train_option.valid?
+  end
+
 end

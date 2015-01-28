@@ -13,9 +13,9 @@ class YelpReader
                           category: "food", train_option_id: train_option.id
     else
       business = search_for_restaurant(train_option.place) || FakeBusiness.new
-      YelpBusiness.create rating: business.rating, phone: business.display_phone,
-                          train_option_id: train_option.id, address: business.location.address.first,
-                          category: business.categories.first.first
+      YelpBusiness.create rating: business.try(:rating), phone: business.try(:display_phone),
+                          train_option_id: train_option.id, address: business.try(:location).try(:address).try(:first),
+                          category: business.try(:categories).try(:first).try(:first)
     end
   end
 

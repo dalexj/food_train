@@ -3,6 +3,8 @@ class TrainOption < ActiveRecord::Base
   has_many :votes
   has_one :yelp_business
 
+  validates :place, presence: true
+
   before_create :set_yelp_business
 
   def vote_count

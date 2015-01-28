@@ -1,0 +1,18 @@
+<div class="panel panel-info">
+  <div class="panel-heading">
+    <center><h1>Add An Option</h1></center>
+  </div>
+  <div class="panel-body">
+    <div class="col-md-4">
+      <%= link_to "Back to group", @back_to_group_path, class: "btn btn-default" %>
+    </div>
+    <div class="col-md-4">
+
+      <%= form_for @train_option, url: train_train_options_path do |f| %>
+        <%= f.label :place %><br>
+        <%= f.text_field :place %><br><br>
+        <%= f.submit class: "btn btn-default btn-lg" %>
+      <% end %>
+    </div>
+  </div>
+</div>
