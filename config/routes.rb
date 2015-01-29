@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
 
   post '/train_options/:id/vote', to: 'votes#create'
-  resources :trains, only: [] do
+  resources :trains, only: [:destroy] do
     resources :train_options, only: [:new, :create]
   end
 end

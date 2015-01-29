@@ -16,6 +16,20 @@ class TrainsController < ApplicationController
     @train_options = Train::MAX_OPTIONS.times.map { TrainOption.new }
   end
 
+  def destroy
+    train = Train.find_by(id: params[:id])
+    if train
+      if current_user == train.group.owner
+        redirect_to group_path(train.group)
+        train.delete
+      else
+        redirect_to :back, notice: "Only the owner can do that"
+      end
+    else
+      redirect_to :back, notice: "This train doesn't exist"
+    end
+  end
+
   private
   def train_params
     params.require(:train).permit(:departure_time, train_options_attributes: [:place])
